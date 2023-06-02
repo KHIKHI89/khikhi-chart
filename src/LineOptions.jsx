@@ -1,14 +1,19 @@
 import React , {useEffect} from 'react';
 
 import * as echarts from 'echarts'
+import { Key } from '@mui/icons-material';
 
-const Chart = (props, state=false)=> {
-  const {title ,legend ,grid , xAxis, yAxis, dataZoom , tooltip , toolbox , axisPointer ,brush , series, data , x , y , opt} = props
-  const [display, setDisplay] = React.useState(state)
+const Chart = (props)=> {
+  const {title ,legend ,grid , xAxis, yAxis, dataZoom , tooltip , toolbox , axisPointer ,brush , series  } = props
+  const data = props.data
+  const selectedx = props.xAxis
+  const selectedy = props.yAxis
+  const [display, setDisplay] = React.useState(false)
   const handleClick = () => setDisplay(true)
   useEffect(() => {
     if(display) {
       var myChart = echarts.init(document.getElementById("graph"));
+      const seriesoptions= []
   console.log(props)
   myChart.setOption({  
           title:{
@@ -42,14 +47,14 @@ const Chart = (props, state=false)=> {
             {
               type: xAxis?.type,
               name : xAxis?.name,
-              data: xAxis?.data
+              data: data.map((item) => item[selectedx])
             }
           ],
           yAxis: [
             {
               type: yAxis?.type,
               name: yAxis?.name,
-              data : yAxis?.data
+              data : data.map((item) => item[selectedy])
             }
           ],
           dataZoom: [
@@ -64,10 +69,44 @@ const Chart = (props, state=false)=> {
            brush: {
                 toolbox: brush?.toolbox || 'rect',
             },
-         series
-    })          
+         series: series.map( function (key) {
+          let option = {}
+          if (key.type === 'line' || key.type === 'bar')
+          { 
+             option = {
+
+              type: key?.type,
+              smooth: key?.smooth,
+              data : data.map((item) => item[selectedy])
+
+            }
+            
+
+          }else if(Key.type ===' pie')
+          {
+            option =  {
+              type: key?.type,
+              data: data.map((d) => ({
+                name: d[selectedx],
+                value: d[selectedy]
+              })),
+              radius: key?.radius,
+               center: key?.center,
+
+            }
+          }
+        
+         seriesoptions.push(option)
+         console.log(seriesoptions)
+
+         return seriesoptions
+        }
+        )
+         
+        
+    })            
   }      
-console.log(series)
+console.log()
 }, [display]);
 
 return (
