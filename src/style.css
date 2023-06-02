@@ -1,0 +1,23 @@
+html,
+body {
+  height: 100%;
+}
+.App {
+  height: 100%;
+}
+.App-body {
+  /* background-color: #282c34; */
+  background-color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  /* color: white; */
+  color: black;
+  overflow: hidden;
+}
+#root {
+  height: 100%;
+}
