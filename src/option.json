@@ -1,0 +1,372 @@
+{
+    "schema": { 
+      "title":{
+        "type": "String",
+        "label": "Title",
+        "required": true,
+        "default": "Title"
+    },
+      "legend": {
+        "type": "object",
+        "label": "Legend",
+        "schema": {
+           "type": {
+              "type":"string",
+              "label":"Type",
+              "default":"plain",
+              "multiple" : false,
+              "possibles":[
+                {"label":"plain", "value":"plain"},
+                {"label":"scroll", "value":"scroll"}
+              ]
+
+            },
+           "show": {
+              "type": "boolean",
+              "label": "Show",
+              "default": true
+          },
+          "data":{
+            "type": "string",
+            "label": "Data",
+            "default":[]
+
+          },
+          "orient": {
+            "type": "string",
+            "label":"Orientation",
+            "default":"horizontal",
+            "multiple":false,
+            "possibles":[
+                {"label":"horizontal" , "value":"horizontal"},
+                {"label":"vertical" , "value": "vertical"}
+            ]
+          }
+       
+        }
+      },
+      "grid":{
+        "type":"object",
+        "label":"Grid",
+        "schema": {
+            "left":{
+                "type": "number"
+            },
+            "right":{
+                "type":"number"
+            },
+            "bottom":{
+                "type": "number"
+            },
+            "top":{
+                "type": "number"
+            }
+      }
+    },
+      "xAxis": {
+        "type": "object",
+        "label": "X-Axis",
+        "schema": {
+          "type": {
+            "type": "string",
+            "label": "Type",
+            "default": "category",
+            "multiple":false,
+            "possibles": [
+              { "label": "Category", "value": "category" },
+              { "label": "Value", "value": "value" },
+              { "label": "Time", "value": "time" }
+            ]
+          },
+          "name":{
+            "type": "string",
+            "label":"x Axis's name",
+            "options":{
+                "minLength":1,
+                "maxLength":10
+            }
+          },
+          "data":{
+            "type":"string",
+            "required" : true,
+            "posibbles":
+            {
+              "label": "dataSchema",
+              "value": [
+                { "key": "string" }
+              ]
+            }
+          }
+          
+
+          }
+        }
+      },
+      "yAxis": {
+        "type": "object",
+        "label": "X-Axis",
+        "schema": {
+          "type": {
+            "type": "string",
+            "label": "Type",
+            "default": "value",
+            "multiple":false,
+            "possibles": [
+              { "label": "Value", "value": "value" }
+            ]
+          },
+          "name":{
+            "type": "string",
+            "label":"x Axis's name",
+            "options":{
+                "minLength":1,
+                "maxLength":10
+            }
+          },
+          "data":{
+            "type":"string",
+            "required" : true,
+            "posibbles":
+            {
+              "label": "dataSchema",
+              "value": [
+                { "key": "string" }
+              ]
+            }
+          }
+          
+
+          }
+        }
+      ,
+      "dataZoom": {
+        "type": "object",
+        "label": "Data Zoom",
+        "schema": {
+            "type": {
+                "type": "string",
+                "label": "Type",
+                "multiple":false,
+                "default":"inside",
+                "possibles": [
+                    { "label": "Inside", "value": "inside" },
+                    { "label":"slider", "value": "slider"}
+                ]
+            }
+        }
+      },
+      "tooltip": {
+        "type": "object",
+        "label": "Tooltip",
+        "schema": {
+          "show": {
+            "type": "boolean",
+            "label": "Show",
+            "default": true
+          },
+          "trigger": {
+            "type": "string",
+            "label": "Trigger",
+            "default": "axis",
+            "multiple": false,
+            "possibles": [
+              { "label": "Axis", "value": "axis" },
+              { "label": "Item", "value": "item" }
+            ]
+          },
+          "formatter": {
+            "type": "string",
+            "label": "Formatter",
+            "default": "{a} <br/>{b}: {c}"
+          }
+        }
+      },
+      "axisPointer":{
+        "type": "object",
+        "label": "Axis Pointer",
+        "schema":{
+            "show": {
+                "type": "boolean",
+                "label" :"Show",
+                "default": true
+            },
+            "type": {
+                "type": "string",
+                "label": "Type",
+                "default": "line",
+                "multiple": false,
+                "possibles":[
+                    { "label": "Line", "value": "line"},
+                    { "label": "Shadow" , "value": "shadow" },
+                    { "label": "None" , "value": "none" }
+                ]
+            }
+        }
+      },
+      "toolbox":{
+        "type": "object",
+        "label": "Toolbox",
+        "schema":{
+            "show": {
+                "type": "boolean",
+                "label": "Type",
+                "default" : true
+            },
+            "orient":{
+                "type":"string",
+                "label": "Orientation",
+                "default" :"horizontal",
+                "multiple" : false,
+                "possibles":[
+                    {"label" : "horizontal" , "value": "horizontal"},
+                    {"label" :"vertical", "value": "vertical" }
+                ]
+            },
+            "feature":{
+                "type":"object",
+                "label" : "Feature", 
+                "schema":{
+                    "saveAsImage":{
+                        "type":"object",
+                        "label":"Save As Image",
+                        "schema":{
+                          "type":"string",
+                          "default":"png"
+                        }
+                       
+                    },
+                    "magicType":{
+                        "type":"object",
+                        "label":"Magic Type",
+                        "schema" : {
+                            "show":{
+                                "type":"boolean",
+                                "label" : "Shadow",
+                                "default" : true
+                            },
+                            "type":{
+                                "type":"string",
+                                "label" :"Type",
+                                "multiple":false,
+                                "possibles":[
+                                    {"label": "Line" , "value": "line"},
+                                    {"label" : "Bar" , "value" : "bar"},
+                                    {"label" : "Stack " , "value" : "stack"}
+                                ]
+
+                            }
+                        }
+                    }
+
+                    }
+                  }
+                }
+            },
+            "brush":{
+                "type":"object",
+                "label": "Brush",
+                "schema":{
+                    "toolbox":{
+                        "type":"string",
+                        "label" : "Brush Toolbox",
+                        "multiple":true,
+                        "possibles":[
+                            {"label" : "rect" , "value" : "rect"},
+                            {"label" : "polygon" , "value" : "polygon"},
+                            {"label" : "keep" , "value" : "keep"},
+                            {"label" : "clear" , "value" : "clear"}
+
+                        ]
+                    }
+                }
+            },
+            "series": {
+                "type": "array",
+                "required": true,
+                "multiple": true,
+                "schemas": [ {
+                  "options": {
+                    "label": "Line",
+                    "value" :"line",
+                    "icon" : "line"
+                  },
+                  "schema":{
+                    "smooth":{
+                      "type":"boolean",
+                      "default": true
+                    },
+                    "data":{
+                      "type":"string",
+                      "required" : true,
+                      "default": "",
+                      "possibles": [
+                        {
+                          "label": "dataSchema",
+                          "value": [
+                            { "key": "string" }
+                          ]
+                        }
+                      ]
+  
+                        
+
+                      
+
+
+                    }
+                  }
+                  
+              },
+              {
+                "options": {
+                  "label": "Bar",
+                  "value" :"Bar",
+                  "icon" : "bar"
+                },
+                "schema":{
+                  
+                  "data":{
+                    "type":"string",
+                    "required" : true,
+                    "posibbles":
+                    {
+                      "label": "dataSchema",
+                      "value": [
+                        { "key": "string" }
+                      ]
+                    }
+                  }
+                }
+              },
+            {
+              "options": {
+                "label": "Pie",
+                "value" :"Pie",
+                "icon" : "Pie"
+              },
+              "schema":{
+                "radius":{
+                  "type":"number"
+                  
+                },
+                "center":{
+                  "type":"array",
+                  "default": ["50%","50%"]
+                },
+                
+                
+                "data":{
+                  "type":"string",
+                  "required" : true,
+                  "posibbles":
+                  {
+                    "label": "dataSchema",
+                    "value": [
+                      { "key": "string" }
+                    ]
+                  }
+                }
+              }
+            }]            
+        }
+  }   
