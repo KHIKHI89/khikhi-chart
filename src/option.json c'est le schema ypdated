@@ -29,7 +29,7 @@
           "data":{
             "type": "string",
             "label": "Data",
-            "default":[]
+            
 
           },
           "orient": {
