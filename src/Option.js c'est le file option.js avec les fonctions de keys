@@ -1,9 +1,4 @@
- import TitleIcon from '@mui/icons-material/Title';
- import ZoomInIcon from '@mui/icons-material/ZoomIn';
- import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
- import TimelineIcon from '@mui/icons-material/Timeline';
- import PieChartIcon from '@mui/icons-material/PieChart';
-
+ 
 
  const option = {
     
@@ -14,11 +9,12 @@
             "required": true,
             "default": "Title",
             "description": "Title component",
-            "icon":TitleIcon
+            "icon": "title",
         },
           "legend": {
             "type": "object",
             "label": "Legend",
+            "icon" : "rocket_launch",
             "description":"Legend component shows name of different series",
             "schema": {
                "type": {
@@ -59,6 +55,7 @@
           "grid":{
             "type":"object",
             "label":"Grid",
+            "icon":"dashboard",
             "description": "Drawing grid in rectangular coordinate",
             "schema": {
                 "left":{
@@ -78,6 +75,7 @@
           "xAxis": {
             "type": "object",
             "label": "X-Axis",
+            "icon":"arrow_forward",
             "description":"The x axis in cartesian",
             "schema": {
               "type": {
@@ -104,30 +102,24 @@
                 "required" : true,
                 "possibles" : function generatePossiblesFromDataSchema(dataSchema) { // j'ai testé les fonctions et elles marchent 
                     const possibles = [];
-                  
                     Object.keys(dataSchema).map((propertyName) => {
                       const property = dataSchema[propertyName];
-                      
                       const possible= {
                         label: property.label ,
                         value: propertyName,
                       };
-                  
                       possibles.push(possible);
                     });
-                  
                     return possibles;
                   }
-    
               }
-              
-    
               }
             }
           },
           "yAxis": {
             "type": "object",
             "label": "X-Axis",
+            "icon" :"north",
             "description":"The y axis in cartesian",
             "schema": {
               "type": {
@@ -175,7 +167,7 @@
           "dataZoom": {
             "type": "object",
             "label": "Data Zoom",
-            "icon" : ZoomInIcon,
+            "icon" : "zoom_in",
             "description":"data zoom of the component",
             "schema": {
                 "type": {
@@ -220,6 +212,7 @@
           "axisPointer":{
             "type": "object",
             "label": "Axis Pointer",
+            "icon" :"location_searching",
             "description":" axisPointer is a tool for displaying reference line and axis value under mouse pointer.",
             "schema":{
                 "show": {
@@ -243,6 +236,7 @@
           "toolbox":{
             "type": "object",
             "label": "Toolbox",
+            "icon" :"room_preferences" ,
             "description":"a group of utility tools, which include different type of features ",
             "schema":{
                 "show": {
@@ -303,6 +297,7 @@
                 "brush":{
                     "type":"object",
                     "label": "Brush",
+                    "icon" :"highlight_alt",
                     "description":"is an area-selecting component, with which user can select part of data from a chart to display in detail, or do calculations with them ",
                     "schema":{
                         "toolbox":{
@@ -327,7 +322,7 @@
                       "options": {
                         "label": "Line",
                         "value" :"line",
-                        "icon" : TimelineIcon,
+                        "icon" : "show_chart",
                       },
                       "schema":{
                         "smooth":{
@@ -369,7 +364,7 @@
                     "options": {
                       "label": "Bar",
                       "value" :"Bar",
-                      "icon" : SignalCellularAltIcon
+                      "icon" : "bar_chart"
                     },
                     "schema":{
                       
@@ -400,7 +395,7 @@
                   "options": {
                     "label": "Pie",
                     "value" :"Pie",
-                    "icon" : PieChartIcon
+                    "icon" : "pie_chart"
                   },
                   "schema":{
                     "radius":{
