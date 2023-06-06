@@ -31,7 +31,7 @@ const Chart = (props)=> {
             name: serie.name,
             type: serie.type,
             smooth: serie.smooth,
-            data : data.map((d) => d[serie.data])
+            data : data.map((d) => d[yselected])
   
           }
           
@@ -62,6 +62,7 @@ const Chart = (props)=> {
 
     if(display) {
       var myChart = echarts.init(document.getElementById("graph"));
+      
 
       console.log(SERIES);
   myChart.setOption({  
@@ -88,18 +89,20 @@ const Chart = (props)=> {
             toolbox: {...toolbox},
           grid: {...grid},
           
-          xAxis: [
+          xAxis: series.filter(s=>['bar','line'].includes(s.type).length > 0) 
+          ? [
             {
               type: xAxis?.type,
               name : xAxis?.name,
-              data: data.map((item) => item[xselected])
+              data: data.map((d) => d[xselected])
             }
-          ],
+          ]
+          : undefined,
           yAxis: [
             {
               type: yAxis?.type,
               name: yAxis?.name,
-              data : data.map((item) => item[yselected])
+              data : data.map((d) => d[yselected])
             }
           ],
           dataZoom: [
@@ -125,7 +128,7 @@ const Chart = (props)=> {
 }, [display]);
 
 return (
-  <div>
+  <div style={{width:"100%" , height:"100%"}}>
    
     <button onClick={handleClick}>
       Display
@@ -134,8 +137,8 @@ return (
          <div
     id="graph"
     style={{
-      width: "50%",
-      height: 200,
+      width: "100%",
+      height: "100%"
     }}
   /> 
 </div>
